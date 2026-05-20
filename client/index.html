@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Potter's Duel — Wizarding Card Battle Arena">
+  <title>Potter's Duel — The Sorting &amp; The Sacrifice</title>
+
+  <!-- Google Fonts: Cinzel (titles) + EB Garamond (body) + Roboto (stats) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+       APP ROOT вЂ” SPA container
+       Screens toggled via .hidden class
+  в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ -->
+  <div id="app">
+
+    <!-- в–‘в–‘в–‘ SCREEN: AUTH в–‘в–‘в–‘ -->
+    <section id="screen-auth" class="screen" aria-label="Authentication">
+
+      <!-- Animated floating particles background -->
+      <div class="particles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="auth-wrapper">
+        <!-- Crest / Logo -->
+        <div class="crest" aria-hidden="true">
+          <img src="/assets/icon/castle-icon.png" alt="" class="crest-img" width="200" height="120">
+        </div>
+
+        <h1 class="logo-title">Potter's Duel</h1>
+        <p class="logo-subtitle">The Sorting &amp; The Sacrifice</p>
+
+        <!-- Glass panel -->
+        <div class="glass-panel auth-panel">
+
+          <!-- в”Ђв”Ђ Login Form в”Ђв”Ђ -->
+          <form id="form-login" class="auth-form active" novalidate>
+            <h2 class="panel-title" data-i18n="auth.login.title">Enter the Wizarding World</h2>
+
+            <div class="field-group">
+              <label for="login-username" class="field-label">Wizard Name</label>
+              <input type="text" id="login-username" class="field-input" placeholder="Your username" autocomplete="username" required>
+            </div>
+
+            <div class="field-group">
+              <label for="login-password" class="field-label">Incantation (Password)</label>
+              <input type="password" id="login-password" class="field-input" placeholder="••••••••" autocomplete="current-password" required>
+            </div>
+
+            <label class="toggle-remember" for="login-remember">
+              <input type="checkbox" id="login-remember">
+              <span class="toggle-track"><span class="toggle-thumb"></span></span>
+              <span class="toggle-label">Remember Me</span>
+            </label>
+
+            <button type="submit" id="btn-login" class="btn btn-gold btn-full">
+              Enter Hogwarts
+            </button>
+
+            <div class="auth-links">
+              <a href="#" id="link-to-forgot" class="link-gold">Forgot Password?</a>
+              <span class="link-sep">·</span>
+              <a href="#" id="link-to-register" class="link-gold">Create Account</a>
+            </div>
+          </form>
+
+          <!-- в”Ђв”Ђ Register Form в”Ђв”Ђ -->
+          <form id="form-register" class="auth-form hidden" novalidate>
+            <h2 class="panel-title" data-i18n="auth.register.title">Join the Order</h2>
+
+            <div class="field-group">
+              <label for="reg-username" class="field-label">Wizard Name</label>
+              <input type="text" id="reg-username" class="field-input" placeholder="Choose a name" autocomplete="username" required>
+            </div>
+
+            <div class="field-group">
+              <label for="reg-email" class="field-label">Owl Address (Email)</label>
+              <input type="email" id="reg-email" class="field-input" placeholder="you@hogwarts.ac.uk" autocomplete="email" required>
+            </div>
+
+            <div class="field-group">
+              <label for="reg-password" class="field-label">Incantation (Password)</label>
+              <input type="password" id="reg-password" class="field-input" placeholder="Min. 6 characters" autocomplete="new-password" required>
+            </div>
+
+            <!-- House Selector -->
+            <fieldset class="house-fieldset">
+              <legend class="field-label">Choose Your House</legend>
+              <div class="house-grid">
+                <label class="house-tile gryff" for="house-gryff">
+                  <input type="radio" id="house-gryff" name="house" value="gryffindor" checked>
+                  <span class="house-icon">🦁</span>
+                  <span class="house-name">Gryffindor</span>
+                </label>
+                <label class="house-tile slyt" for="house-slyt">
+                  <input type="radio" id="house-slyt" name="house" value="slytherin">
+                  <span class="house-icon">🐍</span>
+                  <span class="house-name">Slytherin</span>
+                </label>
+                <label class="house-tile huff" for="house-huff">
+                  <input type="radio" id="house-huff" name="house" value="hufflepuff">
+                  <span class="house-icon">🦡</span>
+                  <span class="house-name">Hufflepuff</span>
+                </label>
+                <label class="house-tile rave" for="house-rave">
+                  <input type="radio" id="house-rave" name="house" value="ravenclaw">
+                  <span class="house-icon">🦅</span>
+                  <span class="house-name">Ravenclaw</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <button type="submit" id="btn-register" class="btn btn-gold btn-full">
+              <span class="btn-icon">⚡</span> Join the Wizards
+            </button>
+
+            <div class="auth-links">
+              <a href="#" id="link-to-login" class="link-gold">Back to Login</a>
+            </div>
+          </form>
+
+          <!-- в”Ђв”Ђ Forgot Password Form в”Ђв”Ђ -->
+          <form id="form-forgot" class="auth-form hidden" novalidate>
+            <h2 class="panel-title" data-i18n="auth.forgot.title">Restore Your Magic</h2>
+            <p class="panel-hint">Enter your Owl Address and we'll send you a reset link.</p>
+
+            <div class="field-group">
+              <label for="forgot-email" class="field-label">Owl Address (Email)</label>
+              <input type="email" id="forgot-email" class="field-input" placeholder="you@hogwarts.ac.uk" autocomplete="email" required>
+            </div>
+
+            <button type="submit" id="btn-forgot" class="btn btn-gold btn-full">
+              <span class="btn-icon">📜</span> Send Reset Link
+            </button>
+
+            <div class="auth-links">
+              <a href="#" id="link-forgot-back" class="link-gold">Back to Login</a>
+            </div>
+          </form>
+
+          <!-- в”Ђв”Ђ Reset Password Form в”Ђв”Ђ -->
+          <form id="form-reset" class="auth-form hidden" novalidate>
+            <h2 class="panel-title" data-i18n="auth.reset.title">Forge New Magic</h2>
+            <p class="panel-hint">Enter your new incantation below.</p>
+
+            <div class="field-group">
+              <label for="reset-new-password" class="field-label">New Incantation</label>
+              <input type="password" id="reset-new-password" class="field-input" placeholder="Min. 6 characters" autocomplete="new-password" required>
+            </div>
+
+            <div class="field-group">
+              <label for="reset-confirm-password" class="field-label">Confirm Incantation</label>
+              <input type="password" id="reset-confirm-password" class="field-input" placeholder="Min. 6 characters" autocomplete="new-password" required>
+            </div>
+
+            <input type="hidden" id="reset-token" value="">
+
+            <button type="submit" id="btn-reset" class="btn btn-gold btn-full">
+              <span class="btn-icon">✨</span> Reset Password
+            </button>
+
+            <div class="auth-links">
+              <a href="#" id="link-reset-back" class="link-gold">Back to Login</a>
+            </div>
+          </form>
+
+          <!-- Error / Success message -->
+          <div id="auth-message" class="auth-message" role="alert" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- в–‘в–‘в–‘ SCREEN: MAIN MENU в–‘в–‘в–‘ -->
+    <section id="screen-main" class="screen hidden" aria-label="Main Menu">
+      <div class="menu-wrapper">
+
+        <header class="menu-header">
+          <div class="menu-header-top">
+            <div>
+              <h1 class="menu-title" data-i18n="main.title">Choose Your Duel</h1>
+              <p class="menu-subtitle" id="menu-greeting" data-i18n="main.subtitle">Welcome, Wizard</p>
+            </div>
+          </div>
+          <div class="side-menu-toggle-wrapper">
+            <button type="button" class="btn btn-ghost side-menu-toggle" id="btn-open-side-menu" aria-label="Open profile menu">
+              <span aria-hidden="true">☰</span>
+              <span class="sr-only">Open profile menu</span>
+            </button>
+          </div>
+
+        <!-- Mode tiles -->
+        <div class="mode-grid">
+
+          <!-- 1v1 -->
+          <button class="mode-tile" id="btn-mode-1v1" aria-label="Start 1 versus 1 duel">
+            <div class="mode-tile-glow" aria-hidden="true"></div>
+            <img src="/assets/icon/icon-solo.png" alt="" class="mode-icon" width="80" height="80" aria-hidden="true">
+            <h2 class="mode-name" data-i18n="main.mode.solo.title">Solo Duel</h2>
+            <p class="mode-desc" data-i18n="main.mode.solo.desc">1 vs 1 — Face a single wizard. Compare spells, last one standing wins.</p>
+            <span class="mode-badge" data-i18n="main.mode.solo.badge">Classic</span>
+          </button>
+
+          <!-- 2v2 -->
+          <button class="mode-tile mode-tile--dark" id="btn-mode-2v2" type="button" aria-label="Start 2 versus 2 team duel">
+            <div class="mode-tile-glow" aria-hidden="true"></div>
+            <img src="/assets/icon/icon-duo.png" alt="" class="mode-icon" width="80" height="80" aria-hidden="true">
+            <h2 class="mode-name">Team Battle</h2>
+            <p class="mode-desc">2 vs 2 — Ally with another wizard. Combined spell power decides the clash.</p>
+            <span class="mode-badge mode-badge--dark">Teams</span>
+          </button>
+
+          <!-- vs Bot -->
+          <button class="mode-tile mode-tile--bot" id="btn-mode-bot" aria-label="Play against AI bot">
+            <div class="mode-tile-glow" aria-hidden="true"></div>
+            <img src="/assets/icon/icon-trainning.png" alt="" class="mode-icon" width="80" height="80" aria-hidden="true">
+            <h2 class="mode-name" data-i18n="main.mode.bot.title">Practice Duel</h2>
+            <p class="mode-desc" data-i18n="main.mode.bot.desc">1 vs Bot — Sharpen your spells against an enchanted automaton.</p>
+            <span class="mode-badge mode-badge--bot" data-i18n="main.mode.bot.badge">Training</span>
+          </button>
+        </div>
+
+        <div id="menu-queue-banner" class="menu-queue-banner hidden" role="status" aria-live="polite">
+          <span class="menu-queue-spinner" aria-hidden="true">🪄</span>
+          <span id="menu-queue-text" data-i18n="main.queue.searching">Searching for an opponent…</span>
+          <button type="button" class="btn btn-ghost btn-sm" id="btn-cancel-queue-banner" data-i18n="main.queue.cancel">Cancel</button>
+        </div>
+
+        <div class="menu-status-strip">
+          <div class="menu-avatar-card">
+            <img id="menu-avatar" src="" alt="Your avatar" class="menu-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'120\' viewBox=\'0 0 120 120\'%3E%3Ccircle cx=\'60\' cy=\'60\' r=\'60\' fill=\'%23c9a84c\'/%3E%3Ctext x=\'60\' y=\'75\' text-anchor=\'middle\' font-size=\'60\' fill=\'%230a0a14\'%3E🧙%3C/text%3E%3C/svg%3E'">
+          </div>
+          <div class="menu-xp-summary">
+            <div class="menu-xp-header">
+              <span class="menu-xp-title">Your Progress</span>
+              <span class="menu-xp-value" id="menu-xp-text">0 / 100 XP</span>
+            </div>
+            <div class="xp-bar">
+              <div class="xp-bar-fill" id="menu-xp-bar-fill"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <aside id="side-menu" class="side-menu" aria-label="Profile menu" hidden>
+        <button type="button" class="btn btn-ghost side-menu-close" id="btn-close-side-menu" aria-label="Close profile menu">
+          <span aria-hidden="true">✕</span>
+          <span class="sr-only">Close profile menu</span>
+        </button>
+        <div class="side-menu-header">
+          <img id="sidebar-avatar" src="" alt="Your avatar" class="sidebar-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'120\' viewBox=\'0 0 120 120\'%3E%3Ccircle cx=\'60\' cy=\'60\' r=\'60\' fill=\'%23c9a84c\'/%3E%3Ctext x=\'60\' y=\'75\' text-anchor=\'middle\' font-size=\'60\' fill=\'%230a0a14\'%3E🧙%3C/text%3E%3C/svg%3E'">
+          <div>
+            <p class="side-menu-welcome">Wizard Menu</p>
+            <p class="side-menu-name" id="sidebar-username">You</p>
+          </div>
+        </div>
+        <div class="side-menu-actions">
+          <button class="btn btn-outline btn-full" id="btn-to-profile" data-i18n="sidebar.profile">
+            My Profile
+          </button>
+          <button class="btn btn-ghost btn-full" id="btn-open-settings" data-i18n="sidebar.settings">
+            Settings
+          </button>
+          <button class="btn btn-ghost btn-full" id="btn-card-catalog" data-i18n="sidebar.catalog">
+            Card Codex
+          </button>
+          <button class="btn btn-ghost btn-full" id="btn-logout" data-i18n="sidebar.logout">
+            Logout
+          </button>
+        </div>
+      </aside>
+    </section>
+
+    <!-- в–‘в–‘в–‘ SCREEN: PROFILE в–‘в–‘в–‘ -->
+    <section id="screen-profile" class="screen hidden" aria-label="Wizard Profile">
+      <div class="profile-wrapper">
+
+        <header class="screen-header">
+          <button class="btn btn-ghost btn-back" id="btn-profile-back">Back</button>
+          <h1 class="screen-title">Wizard Profile</h1>
+        </header>
+
+        <div class="glass-panel profile-panel">
+
+          <!-- Avatar + Identity -->
+          <div class="profile-identity">
+            <div class="avatar-ring">
+              <img id="profile-avatar" src="" alt="Wizard avatar" class="profile-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'120\' viewBox=\'0 0 120 120\'%3E%3Ccircle cx=\'60\' cy=\'60\' r=\'60\' fill=\'%23c9a84c\'/%3E%3Ctext x=\'60\' y=\'75\' text-anchor=\'middle\' font-size=\'60\' fill=\'%230a0a14\'%3E🧙%3C/text%3E%3C/svg%3E'">
+              <div class="avatar-halo" aria-hidden="true"></div>
+            </div>
+            <div class="profile-identity-info">
+              <h2 id="profile-username" class="profile-name">&mdash;</h2>
+              <p id="profile-house" class="profile-house">House Unknown</p>
+            </div>
+          </div>
+
+          <!-- Stats row -->
+          <div class="stats-row">
+            <div class="stat-card">
+              <span class="stat-value" id="stat-wins">0</span>
+              <span class="stat-label">Victories</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value" id="stat-losses">0</span>
+              <span class="stat-label">Defeats</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value" id="stat-level">1</span>
+              <span class="stat-label">Level</span>
+            </div>
+          </div>
+
+          <!-- XP Progress bar -->
+          <div class="xp-bar-wrap">
+            <div class="xp-bar-label">
+              <span>XP Progress</span>
+              <span id="xp-text">0 / 100</span>
+            </div>
+            <div class="xp-bar-track">
+              <div class="xp-bar-fill" id="xp-bar-fill"></div>
+            </div>
+          </div>
+
+          <!-- Settings -->
+          <div class="profile-settings">
+            <h3 class="settings-title">Update Profile</h3>
+            <p id="profile-message" class="auth-message profile-message" role="status" hidden></p>
+
+            <div class="field-group">
+              <label for="input-username" class="field-label">Wizard Name</label>
+              <input type="text" id="input-username" class="field-input" placeholder="Your display name" maxlength="50" autocomplete="username">
+            </div>
+
+            <div class="field-group">
+              <label for="input-avatar-url" class="field-label">Avatar URL</label>
+              <input type="url" id="input-avatar-url" class="field-input" placeholder="https://example.com/avatar.png" autocomplete="off">
+              <p class="field-hint">Paste a direct link to an image (jpg, png, webp).</p>
+            </div>
+
+            <div class="field-group">
+              <label for="input-new-password" class="field-label">New Password (leave blank to keep)</label>
+              <input type="password" id="input-new-password" class="field-input" placeholder="••••••••" autocomplete="new-password">
+            </div>
+
+            <button type="button" class="btn btn-gold btn-full" id="btn-save-profile">
+              <span class="btn-icon">💾</span> Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- в–‘в–‘в–‘ SCREEN: BATTLEFIELD 1v1 в–‘в–‘в–‘ -->
+    <section id="screen-1v1" class="screen hidden" aria-label="1v1 Battlefield">
+      <div class="battlefield-wrapper">
+
+        <!-- в”Ђв”Ђ Opponent info bar (top) в”Ђв”Ђ -->
+        <div class="player-bar player-bar--top glass-panel" id="bar-opponent">
+          <div class="player-bar-identity">
+            <div class="player-avatar-wrap">
+              <img id="opponent-avatar" src="" alt="Opponent avatar" class="player-avatar">
+            </div>
+            <div class="player-bar-info">
+              <span class="player-bar-name" id="opponent-name">Opponent</span>
+              <div class="hp-wrapper">
+                <span class="hp-label">HP</span>
+                <span class="hp-number" id="opponent-hp-number">20</span>
+                <div class="hp-pips" id="opponent-hp-pips" aria-label="Opponent HP" role="meter" aria-valuenow="20" aria-valuemax="20"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="battlefield-turn-strip">
+          <div class="turn-badge" id="turn-badge-1v1" role="status" aria-live="polite">Your Turn</div>
+        </div>
+
+        <div class="battlefield-center">
+          <div class="turn-timer-wrap">
+            <svg class="timer-ring" viewBox="0 0 64 64" aria-hidden="true">
+              <circle class="timer-ring-bg" cx="32" cy="32" r="28"/>
+              <circle class="timer-ring-fill" id="timer-ring-fill-1v1" cx="32" cy="32" r="28"/>
+            </svg>
+            <span class="timer-digit" id="timer-display-1v1">30</span>
+          </div>
+
+          <!-- WebGPU canvas background -->
+          <canvas id="canvas-battlefield-1v1" class="battlefield-canvas" aria-label="Battlefield visual"></canvas>
+
+          <!-- Spell clash zone -->
+          <div class="clash-zone" id="clash-zone-1v1" aria-hidden="true">
+            <div class="clash-card-slot clash-card-slot--left" id="clash-slot-left"></div>
+            <div class="clash-vs" aria-hidden="true">VS</div>
+            <div class="clash-card-slot clash-card-slot--right" id="clash-slot-right"></div>
+          </div>
+        </div>
+
+        <!-- в”Ђв”Ђ Player info bar (bottom) в”Ђв”Ђ -->
+        <div class="player-bar player-bar--bottom glass-panel" id="bar-player">
+          <div class="player-bar-identity">
+            <div class="player-avatar-wrap">
+              <img id="player-avatar" src="" alt="Your avatar" class="player-avatar">
+            </div>
+            <div class="player-bar-info">
+              <span class="player-bar-name" id="player-name">You</span>
+              <span class="player-faction-badge" id="player-faction-badge"></span>
+              <div class="hp-wrapper">
+                <span class="hp-label">HP</span>
+                <span class="hp-number" id="player-hp-number">20</span>
+                <div class="hp-pips" id="player-hp-pips" aria-label="Your HP" role="meter" aria-valuenow="20" aria-valuemax="20"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Surrender -->
+          <button class="btn btn-danger-ghost btn-sm btn-surrender" id="btn-surrender-1v1">🏳 Surrender</button>
+        </div>
+
+        <!-- в”Ђв”Ђ Card Hand в”Ђв”Ђ -->
+        <div class="hand-tray glass-panel" id="hand-tray-1v1">
+          <h3 class="hand-title">Your Spells <span class="hand-hint">(Choose 1)</span></h3>
+          <div class="hand-play-row">
+            <div class="deck-pile" id="deck-pile" title="Cards remaining in deck" aria-label="Draw pile: 0 cards">
+              <div class="deck-pile-card deck-pile-card--back" aria-hidden="true"></div>
+              <div class="deck-pile-card deck-pile-card--back deck-pile-card--offset" aria-hidden="true"></div>
+            </div>
+            <div class="hand-cards" id="hand-1v1" role="list" aria-label="Your card hand"></div>
+          </div>
+          <button class="btn btn-gold btn-cast" id="btn-cast-1v1" disabled>
+            <span class="btn-icon">✨</span> Cast Spell
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- в–‘в–‘в–‘ SCREEN: BATTLEFIELD 2v2 в–‘в–‘в–‘ -->
+    <section id="screen-2v2" class="screen hidden" aria-label="2v2 Battlefield">
+      <div class="battlefield-wrapper battlefield-wrapper--2v2">
+
+        <!-- в”Ђв”Ђ Enemy Team bar (top) в”Ђв”Ђ -->
+        <div class="team-bar team-bar--top glass-panel" id="bar-team-enemy">
+          <h3 class="team-bar-title team-bar-title--dark">🐍 Death Eaters</h3>
+          <div class="team-players">
+
+            <div class="team-player-slot" id="enemy-slot-1">
+              <div class="player-avatar-wrap"><img class="player-avatar player-avatar--sm" id="enemy1-avatar" src="" alt="Enemy 1" ></div>
+              <div class="player-bar-info">
+                <span class="player-bar-name" id="enemy1-name">Enemy 1</span>
+                <div class="hp-wrapper">
+                  <span class="hp-number hp-number--sm" id="enemy1-hp-number">10</span>
+                  <div class="hp-pips hp-pips--sm" id="enemy1-hp-pips"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="team-player-slot" id="enemy-slot-2">
+              <div class="player-avatar-wrap"><img class="player-avatar player-avatar--sm" id="enemy2-avatar" src="" alt="Enemy 2" ></div>
+              <div class="player-bar-info">
+                <span class="player-bar-name" id="enemy2-name">Enemy 2</span>
+                <div class="hp-wrapper">
+                  <span class="hp-number hp-number--sm" id="enemy2-hp-number">10</span>
+                  <div class="hp-pips hp-pips--sm" id="enemy2-hp-pips"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="battlefield-turn-strip">
+          <div class="turn-badge" id="turn-badge-2v2" role="status" aria-live="polite">Waiting…</div>
+        </div>
+
+        <div class="battlefield-center">
+          <div class="turn-timer-wrap">
+            <svg class="timer-ring" viewBox="0 0 64 64" aria-hidden="true">
+              <circle class="timer-ring-bg" cx="32" cy="32" r="28"/>
+              <circle class="timer-ring-fill" id="timer-ring-fill-2v2" cx="32" cy="32" r="28"/>
+            </svg>
+            <span class="timer-digit" id="timer-display-2v2">30</span>
+          </div>
+
+          <canvas id="canvas-battlefield-2v2" class="battlefield-canvas" aria-label="Battlefield visual"></canvas>
+
+          <div class="clash-zone" id="clash-zone-2v2" aria-hidden="true">
+            <div class="clash-card-slot clash-card-slot--left" id="clash-slot-2v2-left"></div>
+            <div class="clash-vs" aria-hidden="true">VS</div>
+            <div class="clash-card-slot clash-card-slot--right" id="clash-slot-2v2-right"></div>
+          </div>
+        </div>
+
+        <!-- в”Ђв”Ђ Allied Team bar (bottom) в”Ђв”Ђ -->
+        <div class="team-bar team-bar--bottom glass-panel" id="bar-team-allies">
+          <h3 class="team-bar-title team-bar-title--light">🦅 Order of the Phoenix</h3>
+          <div class="team-players">
+
+            <div class="team-player-slot" id="ally-slot-1">
+              <div class="player-avatar-wrap"><img class="player-avatar player-avatar--sm" id="ally1-avatar" src="" alt="Ally 1" ></div>
+              <div class="player-bar-info">
+                <span class="player-bar-name" id="ally1-name">Ally 1</span>
+                <div class="hp-wrapper">
+                  <span class="hp-number hp-number--sm" id="ally1-hp-number">10</span>
+                  <div class="hp-pips hp-pips--sm" id="ally1-hp-pips"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="team-player-slot" id="ally-slot-2">
+              <div class="player-avatar-wrap"><img class="player-avatar player-avatar--sm" id="ally2-avatar" src="" alt="You" ></div>
+              <div class="player-bar-info">
+                <span class="player-bar-name" id="ally2-name">You</span>
+                <div class="hp-wrapper">
+                  <span class="hp-number hp-number--sm" id="ally2-hp-number">10</span>
+                  <div class="hp-pips hp-pips--sm" id="ally2-hp-pips"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-danger-ghost btn-sm btn-surrender" id="btn-surrender-2v2">🏳 Surrender</button>
+        </div>
+
+        <!-- в”Ђв”Ђ Card Hand 2v2 в”Ђв”Ђ -->
+        <div class="hand-tray glass-panel" id="hand-tray-2v2">
+          <h3 class="hand-title">Your Spells <span class="hand-hint">(Choose 2)</span></h3>
+          <div class="hand-cards" id="hand-2v2" role="list" aria-label="Your card hand"></div>
+          <button class="btn btn-gold btn-cast" id="btn-cast-2v2" disabled>
+            <span class="btn-icon">✨</span> Cast Spells
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+         OVERLAYS & MODALS
+    в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ -->
+
+    <!-- Faction pick (coin toss winner) -->
+    <div id="overlay-faction-pick" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="faction-pick-title">
+      <div class="overlay-panel glass-panel sorting-panel">
+        <h2 id="faction-pick-title" class="overlay-title">Choose Your Side</h2>
+        <p class="overlay-subtitle" id="faction-wait-label">Choose your faction</p>
+        <p class="faction-wait-only" id="faction-wait-only">Waiting for opponent…</p>
+        <div class="faction-reveal" id="faction-pick-actions">
+          <button type="button" class="faction-badge faction-badge--order" id="btn-pick-order">
+            <span class="faction-text">Order of the Phoenix</span>
+          </button>
+          <button type="button" class="faction-badge faction-badge--death" id="btn-pick-death">
+            <span class="faction-text">Death Eaters</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legacy sorting overlay (unused) -->
+    <div id="overlay-sorting" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="sorting-title">
+      <div class="overlay-panel glass-panel sorting-panel">
+        <h2 id="sorting-title" class="overlay-title">The Sorting</h2>
+        <p class="overlay-subtitle" id="sorting-subtitle">Rolling the dice of fate…</p>
+
+        <!-- Dice display -->
+        <div class="dice-grid" id="dice-grid" aria-live="polite">
+          <!-- Dice faces injected by ui.js: showDiceRoll() -->
+        </div>
+
+        <!-- Faction assignment reveal -->
+        <div class="faction-reveal hidden" id="faction-reveal">
+          <div class="faction-badge faction-badge--order" id="faction-order">
+            <span class="faction-icon">🦅</span>
+            <span class="faction-text">Order of the Phoenix</span>
+          </div>
+          <div class="faction-badge faction-badge--death" id="faction-death">
+            <span class="faction-icon">💀</span>
+            <span class="faction-text">Death Eaters</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Pre-game countdown -->
+    <div id="overlay-countdown" class="overlay hidden" aria-live="assertive">
+      <div class="overlay-panel glass-panel">
+        <div class="countdown-wrap" id="countdown-wrap">
+          <div class="countdown-ring">
+            <span class="countdown-digit" id="countdown-digit">3</span>
+          </div>
+          <p class="countdown-label">Dealing cards…</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Matchmaking / Loading Overlay -->
+    <div id="overlay-loading" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="loading-title">
+      <div class="overlay-panel glass-panel loading-panel">
+        <div class="wand-spinner" aria-hidden="true">🪄</div>
+        <h2 id="loading-title" class="overlay-title" data-i18n="overlay.loading.title">Summoning Opponent…</h2>
+        <p class="overlay-subtitle" id="loading-subtitle" data-i18n="overlay.loading.subtitle">Searching the wizarding world</p>
+        <button class="btn btn-ghost btn-sm" id="btn-cancel-queue" data-i18n="overlay.loading.cancel">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Round Result Modal -->
+    <div id="modal-round" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="round-result-title">
+      <div class="overlay-panel glass-panel result-panel">
+        <div class="result-icon" id="round-result-icon" aria-hidden="true">⚔️</div>
+        <h2 id="round-result-title" class="overlay-title" id="round-result-title">Round Over</h2>
+        <p class="result-detail" id="round-result-detail"></p>
+        <div class="result-damage" id="round-result-damage" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <!-- Card codex grid -->
+    <div id="overlay-card-catalog" class="overlay overlay--catalog hidden" role="dialog" aria-modal="true" aria-labelledby="catalog-title">
+      <div class="catalog-panel glass-panel">
+        <header class="catalog-header">
+          <h2 id="catalog-title" class="catalog-title">Card Codex</h2>
+          <button type="button" class="catalog-close" id="btn-catalog-close" aria-label="Close card codex">&times;</button>
+        </header>
+        <div class="catalog-filters" role="tablist" aria-label="Filter cards">
+          <button type="button" class="catalog-filter catalog-filter--active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button type="button" class="catalog-filter" data-filter="order" role="tab" aria-selected="false">Order of the Phoenix</button>
+          <button type="button" class="catalog-filter" data-filter="death_eaters" role="tab" aria-selected="false">Death Eaters</button>
+        </div>
+        <p class="catalog-loading hidden" id="catalog-loading">Summoning cards…</p>
+        <p class="catalog-error hidden" id="catalog-error"></p>
+        <div class="catalog-grid" id="catalog-grid" role="list"></div>
+      </div>
+    </div>
+
+    <!-- Card detail (Clash Royale-style) -->
+    <div id="overlay-card-detail" class="overlay overlay--detail hidden" role="dialog" aria-modal="true" aria-labelledby="card-detail-name">
+      <div class="card-detail-panel">
+        <header class="card-detail-header">
+          <h2 id="card-detail-name" class="card-detail-name">—</h2>
+          <button type="button" class="catalog-close card-detail-close" id="btn-card-detail-close" aria-label="Close card details">&times;</button>
+        </header>
+        <div class="card-detail-body">
+          <div class="card-detail-top">
+            <div class="card-detail-portrait-wrap">
+              <img id="card-detail-img" class="card-detail-img" src="" alt="">
+              <span class="card-detail-cost" id="card-detail-cost">0</span>
+            </div>
+            <div class="card-detail-meta">
+              <div class="card-detail-meta-bar" id="card-detail-faction-bar">
+                <span id="card-detail-faction">—</span>
+                <span id="card-detail-type">Wizard</span>
+              </div>
+              <p class="card-detail-desc" id="card-detail-desc"></p>
+            </div>
+          </div>
+          <div class="card-detail-stats" id="card-detail-stats"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Victory / Defeat Modal -->
+    <div id="modal-gameover" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="gameover-title">
+      <div class="overlay-panel glass-panel gameover-panel">
+        <!-- Large central avatar -->
+        <div class="gameover-avatar-wrap">
+          <img id="gameover-avatar" src="" alt="" class="gameover-avatar">
+          <div class="gameover-avatar-halo" aria-hidden="true"></div>
+        </div>
+
+        <p id="gameover-username" class="gameover-username"></p>
+        <h2 id="gameover-title" class="gameover-title" data-i18n="gameover.title.victory">Victory!</h2>
+        <p id="gameover-subtitle" class="gameover-subtitle"></p>
+        <p id="gameover-stats" class="gameover-stats"></p>
+        <div id="gameover-xp-wrap" class="gameover-xp-wrap hidden">
+          <div class="gameover-xp-header">
+            <span class="gameover-xp-label" data-i18n="gameover.xp.label">Experience</span>
+            <span id="gameover-xp-text" class="gameover-xp-value">0 / 100 XP</span>
+          </div>
+          <div class="xp-bar gameover-xp-bar">
+            <div class="xp-bar-fill" id="gameover-xp-fill"></div>
+          </div>
+        </div>
+
+        <div class="gameover-actions">
+          <button class="btn btn-gold" id="btn-play-again" data-i18n="gameover.action.again">
+            Play Again
+          </button>
+          <button class="btn btn-outline" id="btn-back-to-menu" data-i18n="gameover.action.menu">
+            Main Menu
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /#app -->
+
+    <div id="overlay-settings" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <div class="overlay-panel glass-panel settings-panel">
+        <header class="settings-header">
+          <h2 id="settings-title" class="screen-title" data-i18n="settings.title">Settings</h2>
+        </header>
+        <div class="settings-grid">
+          <div class="field-group">
+            <label for="setting-volume" data-i18n="settings.volume.label">Sound Volume</label>
+            <input id="setting-volume" type="range" min="0" max="100" step="1">
+            <span class="field-note" id="setting-volume-value">70</span>
+          </div>
+          <div class="field-group toggle-group">
+            <label for="setting-animations" data-i18n="settings.animations.label">Animations</label>
+            <input id="setting-animations" type="checkbox">
+          </div>
+          <div class="field-group">
+            <label for="setting-speed" data-i18n="settings.speed.label">Animation Speed</label>
+            <select id="setting-speed">
+              <option value="slow" data-i18n="settings.speed.slow">Slow</option>
+              <option value="normal" data-i18n="settings.speed.normal">Normal</option>
+              <option value="fast" data-i18n="settings.speed.fast">Fast</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="setting-language" data-i18n="settings.language.label">Language</label>
+            <select id="setting-language">
+              <option value="ua" data-i18n="settings.language.ua">Українська</option>
+              <option value="en" data-i18n="settings.language.en">English</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="setting-theme" data-i18n="settings.theme.label">Theme</label>
+            <select id="setting-theme">
+              <option value="dark" data-i18n="settings.theme.dark">Dark</option>
+              <option value="light" data-i18n="settings.theme.light">Light</option>
+            </select>
+          </div>
+          <div class="field-group toggle-group">
+            <label for="setting-notifications" data-i18n="settings.notifications.label">Notifications</label>
+            <input id="setting-notifications" type="checkbox">
+          </div>
+          <div class="field-group toggle-group">
+            <label for="setting-bg-music" data-i18n="settings.bgmusic.label">Background Music <span class="field-hint-inline">🎵 <a href="https://www.youtube.com/watch?v=UuPb1J_RCJM&list=PLsYgm6hOXgDToCj9jZ80rUUXVH93EDyHM" target="_blank" rel="noopener">HP Soundtrack</a></span></label>
+            <input id="setting-bg-music" type="checkbox">
+          </div>
+        </div>
+        <div class="settings-actions">
+          <button type="button" class="btn btn-gold btn-full" id="btn-settings-save" data-i18n="settings.save">Save</button>
+          <button type="button" class="btn btn-outline btn-full" id="btn-settings-close-bottom" data-i18n="settings.close">Close</button>
+        </div>
+      </div>
+    </div>
+  <!-- в–‘в–‘в–‘ OVERLAY: ERROR / DISCONNECT в–‘в–‘в–‘ -->
+  <div id="overlay-error" class="overlay hidden" aria-hidden="true">
+    <div class="glass-panel text-center">
+      <div class="mode-icon overlay-error-icon" aria-hidden="true">⚡</div>
+      <h2 id="error-title" class="overlay-title" data-i18n="error.title">Connection Lost</h2>
+      <p id="error-subtitle" class="overlay-subtitle" data-i18n="error.subtitle">The magic spark has faded. Server is unreachable.</p>
+      <button type="button" class="btn btn-outline btn-reconnect" id="btn-error-reconnect" data-i18n="error.action.reconnect">
+        Reconnect
+      </button>
+    </div>
+  </div>
+
+  <!-- в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+       Scripts вЂ” order matters
+  в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/card-images.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/sound-manager.js"></script>
+  <script src="js/bg-music.js"></script>
+  <script src="js/card-catalog.js"></script>
+  <script src="js/ui-manager.js"></script>
+  <script src="js/socket-client.js"></script>
+  <script src="js/renderer.js"></script>
+
+</body>
+</html>
+
+
+
+

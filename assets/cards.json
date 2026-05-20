@@ -1,0 +1,162 @@
+[
+  {
+    "id": "ORD_001",
+    "name": "Expelliarmus",
+    "faction": "order",
+    "power": 30,
+    "special_ability": "Disarm",
+    "description": "Removes the opponent's strongest card from their hand."
+  },
+  {
+    "id": "ORD_002",
+    "name": "Stupefy",
+    "faction": "order",
+    "power": 45,
+    "special_ability": "Stun",
+    "description": "Opponent's next attack deals half damage."
+  },
+  {
+    "id": "ORD_003",
+    "name": "Protego Maxima",
+    "faction": "order",
+    "power": 20,
+    "special_ability": "Shield",
+    "description": "Nullifies all incoming damage this turn."
+  },
+  {
+    "id": "ORD_004",
+    "name": "Expecto Patronum",
+    "faction": "order",
+    "power": 80,
+    "special_ability": "Purify",
+    "description": "Clears all negative effects and deals heavy damage to dark creatures."
+  },
+  {
+    "id": "ORD_005",
+    "name": "Episkey",
+    "faction": "order",
+    "power": 10,
+    "special_ability": "Heal",
+    "description": "Restores 2 HP to the caster."
+  },
+  {
+    "id": "ORD_006",
+    "name": "Bombarda",
+    "faction": "order",
+    "power": 60,
+    "special_ability": "Splash Damage",
+    "description": "Deals damage to both opponents in 2v2."
+  },
+  {
+    "id": "ORD_007",
+    "name": "Confringo",
+    "faction": "order",
+    "power": 55,
+    "special_ability": "Burn",
+    "description": "Opponent takes an extra 10 power damage next turn."
+  },
+  {
+    "id": "ORD_008",
+    "name": "Sectumsempra",
+    "faction": "order",
+    "power": 75,
+    "special_ability": "Bleed",
+    "description": "Bypasses enemy shields."
+  },
+  {
+    "id": "ORD_009",
+    "name": "Lumos Solem",
+    "faction": "order",
+    "power": 40,
+    "special_ability": "Blind",
+    "description": "Opponent's next attack has a 50% chance to miss."
+  },
+  {
+    "id": "ORD_010",
+    "name": "Priori Incantatem",
+    "faction": "order",
+    "power": 90,
+    "special_ability": "Echo",
+    "description": "Copies the opponent's previous spell power."
+  },
+  {
+    "id": "DE_001",
+    "name": "Avada Kedavra",
+    "faction": "death_eaters",
+    "power": 100,
+    "special_ability": "Execute",
+    "description": "If opponent is below 3 HP, instantly kills them."
+  },
+  {
+    "id": "DE_002",
+    "name": "Crucio",
+    "faction": "death_eaters",
+    "power": 85,
+    "special_ability": "Torture",
+    "description": "Deals massive damage and disables opponent's heal spells."
+  },
+  {
+    "id": "DE_003",
+    "name": "Imperio",
+    "faction": "death_eaters",
+    "power": 50,
+    "special_ability": "Control",
+    "description": "Forces the opponent to attack their teammate in 2v2."
+  },
+  {
+    "id": "DE_004",
+    "name": "Morsmordre",
+    "faction": "death_eaters",
+    "power": 30,
+    "special_ability": "Fear",
+    "description": "Reduces the power of opponent's hand by 10 for the rest of the game."
+  },
+  {
+    "id": "DE_005",
+    "name": "Fiendfyre",
+    "faction": "death_eaters",
+    "power": 95,
+    "special_ability": "Double Damage",
+    "description": "Uncontrollable fire. 25% chance to damage yourself."
+  },
+  {
+    "id": "DE_006",
+    "name": "Serpensortia",
+    "faction": "death_eaters",
+    "power": 40,
+    "special_ability": "Poison",
+    "description": "Opponent takes 5 damage every turn."
+  },
+  {
+    "id": "DE_007",
+    "name": "Legilimens",
+    "faction": "death_eaters",
+    "power": 20,
+    "special_ability": "Reveal",
+    "description": "Reveals the opponent's hand and guarantees a critical hit next turn."
+  },
+  {
+    "id": "DE_008",
+    "name": "Oppugno",
+    "faction": "death_eaters",
+    "power": 45,
+    "special_ability": "Swarm",
+    "description": "Summons objects to attack. Ignores standard shields."
+  },
+  {
+    "id": "DE_009",
+    "name": "Obscuro",
+    "faction": "death_eaters",
+    "power": 35,
+    "special_ability": "Blind",
+    "description": "Opponent cannot see their cards next turn."
+  },
+  {
+    "id": "DE_010",
+    "name": "Levicorpus",
+    "faction": "death_eaters",
+    "power": 55,
+    "special_ability": "Suspend",
+    "description": "Opponent skips their next turn."
+  }
+]
